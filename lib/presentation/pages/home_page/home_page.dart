@@ -82,14 +82,7 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    /* Center(
-                      child: Image.network(
-                        'https://www.metaweather.com/static/img/weather/png/' +
-                            abbreviation +
-                            '.png',
-                        width: 100,
-                      ),
-                    ),*/
+                   
                     Center(
                       child: Text(
                         forecastInfo!.forecastdayModel![0].day!.avgtempC!.toInt().toString()+ ' °C',

@@ -7,7 +7,6 @@ import 'package:untitled1/presentation/widgets/custom_button.dart';
 
 import '../../../../utils/authentication/authentication_service.dart';
 import '../../../bloc/cubit.dart';
-import '../../../widgets/button.dart';
 
 class UserInfoWidget extends StatefulWidget {
   const UserInfoWidget({Key? key}) : super(key: key);

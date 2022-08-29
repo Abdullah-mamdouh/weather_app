@@ -1,15 +1,14 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:untitled1/data/models/current_weather.dart';
 
 import '../../../bloc/theme_bloc/cubit.dart';
-import '../../../bloc/theme_bloc/state.dart';
-
 
 class DailyStatus extends StatefulWidget {
-  const DailyStatus({Key? key}) : super(key: key);
+  DailyStatus({Key? key, required this.currentModel}) : super(key: key);
 
+  CurrentModel currentModel;
   @override
   State<DailyStatus> createState() => _DailyStatusState();
 }
@@ -19,6 +18,7 @@ class _DailyStatusState extends State<DailyStatus> {
   Color? _color;
   @override
   Widget build(BuildContext context) {
+    final dayStatus = widget.currentModel;
     _color = ThemeBloc.cardColor;
     // return BlocBuilder<ThemeBloc, ThemeState>(
     //     builder: (context, state) {
@@ -42,7 +42,7 @@ class _DailyStatusState extends State<DailyStatus> {
                     Text('UV index', style: TextStyle(fontSize: 16,
                         color: Colors.white,
                         fontWeight: FontWeight.w700),),
-                    Text('${getExposureCategory(7)}', style: TextStyle(
+                    Text('${getExposureCategory(dayStatus.uv!)}', style: TextStyle(
                         fontSize: 12,
                         color: Colors.white,
                         fontWeight: FontWeight.w400),),
@@ -58,7 +58,7 @@ class _DailyStatusState extends State<DailyStatus> {
                         color: Colors.white,
                         fontWeight: FontWeight.w700),),
                     SizedBox(height: 3,),
-                    Text('39 km/h', style: TextStyle(fontSize: 12,
+                    Text('${dayStatus.windKph!.toInt()} k/h', style: TextStyle(fontSize: 12,
                         color: Colors.white,
                         fontWeight: FontWeight.w400),),
                   ],
@@ -73,7 +73,7 @@ class _DailyStatusState extends State<DailyStatus> {
                         color: Colors.white,
                         fontWeight: FontWeight.w700),),
                     SizedBox(height: 3,),
-                    Text('31%', style: TextStyle(fontSize: 12,
+                    Text('${dayStatus.humidity}%', style: TextStyle(fontSize: 12,
                         color: Colors.white,
                         fontWeight: FontWeight.w400),),
                   ],
@@ -85,7 +85,6 @@ class _DailyStatusState extends State<DailyStatus> {
     // );
 
   }
-
   String getExposureCategory(double index){
    if(index <3){
      return 'Low';

@@ -111,9 +111,6 @@ class _LocationWeatherDetailsState extends State<LocationWeatherDetails> {
                                 ),
                             ),
                           ),
-                          //SizedBox(width: actionSpacing,),
-
-                          //SizedBox(width: actionSpacing,),
                         ],
                       ),
 
@@ -210,7 +207,7 @@ class _LocationWeatherDetailsState extends State<LocationWeatherDetails> {
                       SizedBox(
                         height: 20,
                       ),
-                      DailyStatus(),
+                      DailyStatus(currentModel: currentWeatherInfo!),
                     ],
                   ),
                 ),
@@ -221,7 +218,7 @@ class _LocationWeatherDetailsState extends State<LocationWeatherDetails> {
     );
       }
 
-     /// doing animation when you scroll
+  /// doing animation when you scroll
   _scrollListener() {
     setState(() {
       _onScroll();
@@ -237,6 +234,7 @@ class _LocationWeatherDetailsState extends State<LocationWeatherDetails> {
       titlePaddingTop = _remapCurrentExtent(titlePaddingTopTween);
     });
   }
+
   /// remap to currentExtent
   double _remapCurrentExtent(Tween<double> target) {
     final double deltaTarget = target.end! - target.begin!;
@@ -263,17 +261,11 @@ class _LocationWeatherDetailsState extends State<LocationWeatherDetails> {
     else if (_scrollController.position.pixels ==
         _scrollController.position.minScrollExtent)
       {
-        print('fffffffffffffffffffffffffffffffffffff');
-        // backgroundColor = constantColor.fristBackgroundColor;
-        // cardColor = constantColor.fristcardColor;
+
         ThemeBloc.get(context).changeBackgroundColor(constantColor.fristBackgroundColor);
         ThemeBloc.get(context).changeCardColor(constantColor.fristcardColor);
       }
-    // ThemeBloc.get(context).changeBackgroundColor(backgroundColor);
-    // ThemeBloc.get(context).changeCardColor(cardColor);
-    // setState(() {
-    //   backgroundColor = _color;
-    // });
+
   }
 
   /// dispose to controllers
